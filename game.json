@@ -1,0 +1,6 @@
+const STATE = {OPEN: 1, JOINED: 2, ...
+};
+
+{
+    // "creator": {"displayname": "tim", "uid": "1046174...8939832"}
+}
