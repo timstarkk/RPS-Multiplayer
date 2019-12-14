@@ -1,76 +1,149 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>RPS RPS RPS</title>
-
-
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
-    <link rel="stylesheet" href="/public/css/style.css">
+    <title>RPS RPS RPS</title>
 </head>
 
-<body>
-    <div>
-        <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="display_name" type="text" class="validate">
-                        <label for="display_name">Display Name</label>
-                    </div>
+<body class="grey lighten-3">
+
+    <nav class="z-depth-0 grey lighten-4">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" style="color:black; ">
+                <h5>Rock, Paper, Scissors</h5>
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
+                </li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+                </li>
+                <li class="logged-in" style="display: none;">
+                    <a href="#" class="grey-text" id="logout">Logout</a>
+                </li>
+                <li class="logged-out" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+                </li>
+                <li class="logged-out" style="display: none;">
+                    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- sign up modal -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Sign Up</h4><br />
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required />
+                    <label for="signup-email">Email Address</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="email" type="email" class="validate">
-                        <label for="email">Email</label>
-                    </div>
+                <div class="input-field">
+                    <input type="password" id="signup-password" required />
+                    <label for="signup-password">Choose password</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="password" type="password" class="validate">
-                        <label for="password">Password</label>
-                    </div>
+                <div class="input-field">
+                    <input type="text" id="signup-bio" required />
+                    <label for="signup-bio">One Line Bio</label>
                 </div>
+                <button class="btn yellow darken-2 z-depth-0">Sign up</button>
             </form>
         </div>
-
     </div>
 
-    <div>
-        <!-- <button class="playerButton" id="playerOne">button 1</button>
-        <button class="playerButton" id="playerTwo">button 2</button>
-        <button class="playButton" id="playGame">Play Game</button>
-        <button class="createAccount" id="create_account">Create Account</button> -->
-        <button class="signIn" id="signIn">Sign In</button>
-        <!-- <button class="signInWithGoogle" id="signInWithGoogle">sign in with google</button> -->
-    </div>
-    <div>
-        <p id="paragraph"></p>
-    </div>
-    <div>
-        <p id="directions-text">Press r, p or s to start playing!</p>
-        <p id="userchoice-text"></p>
-        <p id="computerchoice-text"></p>
-        <p id="wins-text"></p>
-        <p id="losses-text"></p>
-        <p id="ties-text"></p>
+    <!-- log in modal -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4><br />
+            <form id="login-form">
+                <div class="input-field">
+                    <input type="email" id="login-email" required />
+                    <label for="login-email">Email Address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="login-password" required />
+                    <label for="login-password">Your password</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Login</button>
+            </form>
+        </div>
     </div>
 
 
-    <!-- JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT  -->
+    <!-- account modal -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+            <h4>Account details</h4><br />
+            <div class="account-details"></div>
+        </div>
+    </div>
+
+    <!-- create guide modal -->
+    <div id="modal-create" class="modal">
+        <div class="modal-content">
+            <h4>Create Guide</h4><br />
+            <form id="create-form">
+                <div class="input-field">
+                    <input type="text" id="title" required />
+                    <label for="title">Guide Title</label>
+                </div>
+                <div class="input-field">
+                    <textarea id="content" class="materialize-textarea" required></textarea>
+                    <label for="content">Guide Content</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GUIDE LIST -->
+
+    <div class="container" style="margin-top: 40px;">
+        <ul class="collapsible z-depth-0 guides" style="border: none;">
+
+        </ul>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC5xuchLROKpB75z-nds4AZ-kpp6YZ3uHQ",
+            authDomain: "rpsf-7ec2f.firebaseapp.com",
+            databaseURL: "https://rpsf-7ec2f.firebaseio.com",
+            projectId: "rpsf-7ec2f",
+            appId: "1:215224139693:web:86b330b8dd5a702f866b24",
+            measurementId: "G-N16PM681D9"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // make auth and firestore references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // update firestore settings
+
+        db.settings({ timestampsInSnapshots: true })
+    </script>
+
+    <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
-    <script type="text/javascript" src="public/js/chat.js"></script>
-    <script type="text/javascript" src="public/js/rps.js"></script>
+    <script src="/public/index.js"></script>
+    <script src="/public/auth.js"></script>
+    <script src="/public/game.js"></script>
 </body>
 
 </html>

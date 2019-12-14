@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RPS RPS RPS</title>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+
+
+    <!-- <div class="main-div">
+        <h5>Firebase Web Login</h5>
+
+        <input type="email" placeholder="Email..." />
+        <input type="password" placeholder="Password..." />
+
+        <button>Login to Account</button>
+    </div> -->
+    <div class="main-div" id="login_div">
+        <div class="row">
+            <form class="col s12">
+                <h5>Firebase Web Login</h5>
+                <!-- <div class="row">
+                    <div class="input-field col s12">
+                        <input id="display_name" type="text" class="validate">
+                        <label for="display_name">Display Name</label>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <button class="signIn" id="signIn">Sign In</button>
+
+    </div>
+
+    <div class="loggedin-div" id="user_div">
+        <h5>Welcome User</h5>
+        <p>welcome to the game. you're logged in.</p>
+        <button id="logout">Logout</button>
+    </div>
+
+    <div>
+        <!-- <button class="playerButton" id="playerOne">button 1</button>
+        <button class="playerButton" id="playerTwo">button 2</button>
+        <button class="playButton" id="playGame">Play Game</button>
+        <button class="createAccount" id="create_account">Create Account</button> -->
+        <!-- <button class="signIn" id="signIn">Sign In</button> -->
+        <!-- <button class="signInWithGoogle" id="signInWithGoogle">sign in with google</button> -->
+    </div>
+    <div>
+        <p id="paragraph"></p>
+    </div>
+
+    <div>
+        <p id="directions-text">Press r, p or s to start playing!</p>
+        <p id="userchoice-text"></p>
+        <p id="computerchoice-text"></p>
+        <p id="wins-text"></p>
+        <p id="losses-text"></p>
+        <p id="ties-text"></p>
+    </div>
+
+
+    <!-- JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT JAVASCRIPT  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <!-- <script src="/public/js/chat.js"></script> -->
+    <script src="/public/js/rps.js"></script>
+</body>
+
+</html>

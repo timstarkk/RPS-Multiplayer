@@ -1,25 +1,16 @@
 {
-  "name": "RPS-Multiplayer",
+  "name": "auth",
   "version": "1.0.0",
-  "description": "Multiplayer Rock-Paper-Scissors Game",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/timstarkk/RPS-Multiplayer.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/timstarkk/RPS-Multiplayer/issues"
-  },
-  "homepage": "https://github.com/timstarkk/RPS-Multiplayer#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "morgan": "^1.9.1",
-    "npm": "^6.13.2"
+    "morgan": "^1.9.1"
   }
 }
