@@ -1,22 +1,38 @@
+
+
 // listen for auth state changes
 auth.onAuthStateChanged(user => {
+
+    console.log('hello');
     if (user) {
-        setupUi(user);
-
         // get data
-        db.collection('newGame').onSnapshot(snapshot => {
-            renderBody(snapshot.docs);
-            renderGameList(snapshot.docs);
+        db.collection('guides').onSnapshot(snapshot => {
+            setupGuides(snapshot.docs);
+            setupUi(user);
         }), err => console.log(err.message);
-
     } else {
+        setupGuides([]);
         setupUi();
-        renderBody([]);
-        renderGameList();
     }
-
-
 });
+
+// create new guide
+const createForm = document.querySelector('#create-form');
+createForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    db.collection('guides').add({
+        title: createForm['title'].value,
+        content: createForm['content'].value
+    }).then(() => {
+        // close modal and reset form
+        const modal = document.querySelector('#modal-create');
+        M.Modal.getInstance(modal).close();
+        createForm.reset();
+    }).catch(error => {
+        console.log(error.message);
+    })
+})
 
 // signup
 const signupForm = document.querySelector('#signup-form');
@@ -45,7 +61,6 @@ logout.addEventListener('click', e => {
     e.preventDefault();
 
     auth.signOut();
-    gameList.innerHTML = '';
 });
 
 // log in
@@ -65,3 +80,10 @@ loginForm.addEventListener('submit', e => {
         loginForm.reset();
     });
 })
+
+//
+
+//
+//
+
+//

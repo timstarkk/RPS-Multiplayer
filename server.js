@@ -23,6 +23,22 @@ app.use('/public', express.static(path.join(__dirname + "/public")));
 // =============================================================
 require("./routes/html-routes.js")(app);
 
+// ++++++++from tutorial+++++++++
+// const admin = require('firebase-admin');
+
+// const serviceAccount = require('');
+
+// const firebaseAdmin = admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: 'https://rpsf-7ec2f.firebaseio.com'
+// })
+
+isAuthenticated = () => {
+    // user
+}
+
+// ++++++++from tutorial+++++++++
+
 
 // Starts the server to begin listening
 // =============================================================

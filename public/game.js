@@ -2,9 +2,9 @@
 const computerChoices = ["r", "p", "s"];
 
 // Creating variables to hold the number of wins, losses, and ties. They start at 0.
-var wins = 0;
-var losses = 0;
-var ties = 0;
+let wins = 0;
+let losses = 0;
+let ties = 0;
 
 // Create variables that will be populated with user guesses each round
 let userGuess = "";
@@ -70,45 +70,20 @@ const game = {
         }
     },
 
-}
+    // when someone clicks Rock, Paper, or Scissors
+    newGameClick: function (userClicked, data) {
+        console.log(data);
 
-$('document').ready(function () {
-    $('.playerButton').on("click", function (e) {
-        console.log(this.id);
-    });
+        const userId = firebase.auth().currentUser.uid;
 
-    $('#playGame').click(function () {
-        game.captureKey();
-    });
-
-    $('#create_account').click(function () {
-        game.submitCreateAccount();
-    });
-
-    $('#signIn').click(function () {
-        // game.signInWithEmailAndPassword();
-        console.log('you clicked signIn')
-
-        let email = $('#email').val().trim();
-        let password = $('#password').val().trim();
-
-        // game.login(email, password);
-
-
-
-        // POST method route
-        app.post('/login', function (req, res) {
-            res.send('post request')
+        db.collection('newGame').add({
+            userId,
+            userClicked
+        }).then(() => {
+            // close modal and reset form
+            console.log('Database successfully updated.')
+        }).catch(error => {
+            console.log(error);
         })
-
-        // app.get('/login')
-        // let Url = window.location.href + "/login"
-
-        // window.location.href(Url);
-    });
-
-    $('#logout').click(function () {
-        console.log('you clicked logout');
-    })
-
-});
+    }
+}
