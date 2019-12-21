@@ -2,17 +2,14 @@
 auth.onAuthStateChanged(user => {
     if (user) {
         setupUi(user);
-
-        // get data
-        db.collection('newGame').onSnapshot(snapshot => {
-            renderBody(snapshot.docs);
-            renderGameList(snapshot.docs);
-        }), err => console.log(err.message);
-
+        // console.log('auth state changed');
+        // render screen
+        renderGame();
+        loadScores();
     } else {
         setupUi();
-        renderBody([]);
-        renderGameList();
+        renderGame();
+        // renderGameList();
     }
 
 

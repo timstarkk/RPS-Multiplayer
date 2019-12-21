@@ -14,7 +14,52 @@ body {
     width: 40px;
 }
 
-.joinButton {
-    position: absolute;
-    right: 16vw;
+
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+}
+
+#gameBoard {
+    display: flex;
+    flex-wrap: wrap;
+    height: 55vh;
+    /* border: 2px solid red; */
+}
+
+#gameBoard > * {
+    /* border: 2px solid blue */
+    display: flex;
+    align-items: center;
+}
+
+.rpsButton {
+    /* border: 2px solid green; */
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.rpsRow {
+    display: flex; 
+    flex-wrap: wrap;
+    align-content: flex-end;
+    height: 100%;
+    /* border: 2px solid red; */
+}
+
+.rpsButtonCol {
+    /* border: 2px solid purple; */
+}
+
+.chatCol {
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+}
+
+.chatArea {
+    border: 1px solid black;
+    width: 100%;
+    height: 75%;
 }

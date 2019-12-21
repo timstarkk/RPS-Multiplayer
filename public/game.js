@@ -35,39 +35,55 @@ const game = {
         };
     },
 
-    playGame: function () {
-        console.log("playGame function running...")
-        database.ref().on("value", function (snapshot) {
-            console.log(snapshot)
-
-        }, function (errorObject) {
-            console.log("The read failed: " + errorObject.code);
-        });
-
+    playGame: function (player1Choice, player2Choice, docID, p1wins, p1ties, p1losses, p2wins, p2ties, p2losses) {
         console.log('playing game')
         // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
-        if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {
 
-            if ((userGuess === "r" && computerGuess === "s") ||
-                (userGuess === "s" && computerGuess === "p") ||
-                (userGuess === "p" && computerGuess === "r")) {
-                wins++;
-            } else if (userGuess === computerGuess) {
-                ties++;
-            } else {
-                losses++;
-            }
+        if ((player1Choice === "rock" && player2Choice === "scissors") ||
+            (player1Choice === "scissors" && player2Choice === "paper") ||
+            (player1Choice === "paper" && player2Choice === "rock")) {
 
-            // Hide the directions
-            $('#directions-text').text("");
+            // player 1 wins
+            console.log('player 1 wins');
+            p1wins += 1;
+            p2losses += 1;
+            console.log(p2losses);
+            db.collection('newGame').doc(docID).update({
+                "gameObject.players.player1.score.wins": p1wins,
+                "gameObject.players.player2.score.losses": p2losses,
+            }).then(res => {
+                console.log('update success')
+            })
 
-            // Display the user and computer guesses, and wins/losses/ties.
-            $("#userchoice-text").text("You chose: " + userGuess);
-            $("#computerchoice-text").text("The computer chose: " + computerGuess);
-            $("#wins-text").text("wins: " + wins);
-            $("#losses-text").text("losses: " + losses);
-            $("#ties-text").text("ties: " + ties);
+        } else if (player1Choice === player2Choice) {
+            console.log('its a tie');
+            p1ties += 1;
+            p2ties += 1;
+            console.log(typeof (p2ties));
+            db.collection('newGame').doc(docID).update({
+                "gameObject.players.player1.score.ties": p1ties,
+                "gameObject.players.player2.score.ties": p2ties,
+            }).then(res => {
+                console.log('update success')
+            })
+        } else {
+            // player 2 wins
+            console.log('player 2 wins');
+            p1losses += 1;
+            p2wins += 1;
+            db.collection('newGame').doc(docID).update({
+                "gameObject.players.player1.score.losses": p1losses,
+                "gameObject.players.player2.score.wins": p2wins,
+            }).then(res => {
+                console.log('update success')
+            })
         }
+
+
+        db.collection('newGame').doc(docID).update({
+            "gameObject.player1Choice": "",
+            "gameObject.player2Choice": ""
+        })
     },
 
     // when someone clicks Rock, Paper, or Scissors
