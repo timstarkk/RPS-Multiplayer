@@ -221,7 +221,7 @@ const renderGame = (data) => {
                     </div>
                     `;
                         newGame.innerHTML = html;
-
+                        loadScores();
                         const joinButton = document.querySelector('.joinButton')
 
 

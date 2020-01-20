@@ -83,6 +83,8 @@ const game = {
         db.collection('newGame').doc(docID).update({
             "gameObject.player1Choice": "",
             "gameObject.player2Choice": ""
+        }).then(doc => {
+            renderGame();
         })
     },
 
