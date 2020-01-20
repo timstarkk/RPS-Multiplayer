@@ -2,7 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 
-var PORT = 3030;
+var PORT = process.env.PORT || 3030;
 
 // Initialize Express
 var app = express();
